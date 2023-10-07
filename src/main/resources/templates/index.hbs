@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hero Squads App</title>
+</head>
+<body>
+<h1>Heroes</h1>
+<ul>
+    {{#each heroes}}
+    <li>{{name}} ({{power}})</li>
+    {{/each}}
+</ul>
+<h1>Squads</h1>
+<ul>
+    {{#each squads}}
+    <li>
+        {{name}} ({{cause}})
+        <form action = "/squads/{{@index}}/assign" method="post">
+            <select name="hero">
+                {{#each ../heroes}}
+                <option value = "{{@index}}">{{name}}</option>
+                {{/each}}
+            </select>
+            <button type="submit">Assign</button>
+        </form>
+    </li>
+    {{/each}}
+</ul>
+
+<h1>Create Hero</h1>
+<form action = "/heroes" method="post">
+    <input type="text" name = "name" placeholder = "Name" required><br>
+    <input type="number" name="age" placeholder="Age" required><br>
+    <input type="text" name="power" placeholder="Power" required><br>
+    <input type="text" name="weakness" placeholder="Weakness" required><br>
+    <button type ="submit">Create</button>
+    </form>
+<h1>Create Squad</h1>
+<form action="/squads" method="post">
+    <input type="text" name="name" placeholder="Name" required><br>
+    <input type="number" name="maxSize" placeholder="Max Size" required><br>
+    <input type="text" name="cause" placeholder="Cause" required><br>
+    <button type ="submit">Create</button>
+
+</form>
+
+</body>
+</html>
