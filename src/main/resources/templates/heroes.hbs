@@ -1,0 +1,249 @@
+{{>layout.hbs}}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/public/css/heroes.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Sansita&display=swap" rel="stylesheet">
+    <link rel='stylesheet' href='/public/css/app.css'>
+</head>
+<body>
+{{#if editHero}}
+    <h2 class="text-center">Update hero information</h2>
+    <div class="container mt-5 offset-sm-3 pt-3 pb-3">
+        <div class="row">
+            <div class="col-md-4 offset-sm-2">
+                <form action="/heroes/{{editHero.id}}/update" method="POST">
+                    <div class="row mb-3">
+                        <label for="name" class="col-sm-2 col-form-label">Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control w-50" id="name" name="name">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="age" class="col-sm-2 col-form-label">Age</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control w-50" id="age" name="age">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-6">
+                            <h4>Select a hero's power(s)</h4>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="gravity-control" name="power" value="gravity-control">
+                                <label class="form-check-label" for="gravity-control">
+                                    Gravity Control
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="time-pause" name="power" value="time-pause">
+                                <label class="form-check-label" for="time-pause">
+                                    Time Pause
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="super-intelligence" name="power" value="super-intelligence">
+                                <label class="form-check-label" for="super-intelligence">
+                                    Super Intelligence
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="danger-warning" name="power" value="danger-warning">
+                                <label class="form-check-label" for="danger-warning">
+                                    Danger Warning
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="time-travel" name="time-travel" value="time-travel">
+                                <label class="form-check-label" for="time-travel">
+                                    Time Travel
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="immortality" name="immortality" value="immortality">
+                                <label class="form-check-label" for="immortality">
+                                    Immortality
+                                </label>
+                            </div>
+                        </div>
+
+                        //Weaknesses
+                        <div class="col-sm-6">
+                            <h4>Select your hero's weaknesses</h4>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="impatient" name="weakness" value="impatient">
+                                <label class="form-check-label" for="impatient">
+                                    Impatient
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="slow" name="slow" value="slow">
+                                <label class="form-check-label" for="slow">
+                                    Lose Focus
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="lazy" name="weakness" value="lazy">
+                                <label class="form-check-label" for="lazy">
+                                    Lazy
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="Agitated" name="weakness" value="Agitated">
+                                <label class="form-check-label" for="Agitated">
+                                    Agitated
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="personally" name="weakness" value="personally">
+                                <label class="form-check-label" for="personally">
+                                    Take things personally
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="power" name="weakness" value="power">
+                                <label class="form-check-label" for="power">
+                                    Low power
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col">
+                            <label for="squadId">Squad</label>
+                            <select class="form-control" name="squadId" id="squadId" required>
+                                {{#each squads}}
+                                    <option value="{{id}}">{{name}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Update Hero</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{{else}}
+    <div class="container intro text-center mt-5">
+        <h3 class="mb-4">Add your hero</h3>
+    </div>
+    <div class="container mt-5 offset-sm-3 pt-3 pb-3">
+        <div class="row">
+            <div class="col-md-4 offset-sm-2">
+                <form action="/heroes/new" method="POST">
+                    <div class="row mb-3">
+                        <label for="name" class="col-sm-2 col-form-label">Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control w-50" id="name" name="name">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="age" class="col-sm-2 col-form-label">Age</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control w-50" id="age" name="age">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-6">
+                            <h4>Choose your hero's powers</h4>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="gravity-control" name="power" value="gravity-control">
+                                <label class="form-check-label" for="gravity-control">
+                                    Gravity Control
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="time-pause" name="power" value="time-pause">
+                                <label class="form-check-label" for="time-pause">
+                                    Time Pause
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="super-intelligence" name="power" value="super-intelligence">
+                                <label class="form-check-label" for="super-intelligence">
+                                    Super Intelligence
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="danger-warning" name="power" value="danger-warning">
+                                <label class="form-check-label" for="danger-warning">
+                                    Danger Warning
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="time-travel" name="time-travel" value="time-travel">
+                                <label class="form-check-label" for="time-travel">
+                                    Time Travel
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="immortality" name="immortality" value="immortality">
+                                <label class="form-check-label" for="immortality">
+                                    Immortality
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <h4>Select your hero's weaknesses</h4>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="hostile" name="weakness" value="hostile">
+                                <label class="form-check-label" for="hostile">
+                                    Impatient
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="focus" name="weakness" value="focus">
+                                <label class="form-check-label" for="focus">
+                                    Lose Focus
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="lazy" name="weakness" value="lazy">
+                                <label class="form-check-label" for="lazy">
+                                    Lazy
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="anger" name="weakness" value="Too much anger">
+                                <label class="form-check-label" for="anger">
+                                    Too much anger
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="personally" name="weakness" value="personally">
+                                <label class="form-check-label" for="personally">
+                                    Take things personally
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="power" name="weakness" value="power">
+                                <label class="form-check-label" for="power">
+                                    Low power
+                                </label>
+                            </div>
+
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col">
+                                <div class="md-form">
+                                    <label for="squadId">Select squad</label>
+                                    <select class="form-control" name="squadId" id="squadId" required>
+                                        {{#each squads}}
+                                            <option value="{{id}}">{{name}}</option>
+                                        {{/each}}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Hero</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{{/if}}
+
+</body>
+</html>

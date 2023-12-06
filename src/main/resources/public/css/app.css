@@ -1,0 +1,23 @@
+body{
+    background-image:linear-gradient(rgba(0,0,0,1.6),rgba(0,0,0,1.6)),url(/images/superhero.jpg);
+    height: 200vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    font-family: sans-serif;
+    color: green;
+}
+.nav li a{
+    color:peach;
+    font-size:20px;
+}
+
+.nav li a:hover{
+    color: green;
+}
+
+.btn{
+     background-color:green;
+     padding: 10px 30px;
+     border-radius: 50px;
+}
