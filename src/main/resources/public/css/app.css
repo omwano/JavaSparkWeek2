@@ -1,5 +1,5 @@
 body{
-    background-image:linear-gradient(rgba(0,0,0,1.6),rgba(0,0,0,1.6)),url(/images/superhero.jpg);
+    background-image:linear-gradient(rgba(0,0,0,1.2),rgba(0,0,0,1.2)),url(/images/superhero.jpg);
     height: 200vh;
     background-repeat: no-repeat;
     background-size: cover;
