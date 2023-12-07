@@ -14,5 +14,5 @@ This is a Java recruitment application that allows a user to add a hero to a squ
 - Handlebars
 - Spark
 
-##License
+## License
 Copyright (c) 2023 omwano
